@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\sktl50052\\anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Users\\sktl50052\\anaconda3\\python.exe",
+    "python.linting.pylintArgs": []
 }
