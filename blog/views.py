@@ -61,7 +61,9 @@ def naver_realtime_keywords(request):
     return HttpResponse(text)
 
 def naver_blog_search(request):
-    query = request.GET.get('query') # Key가 없으면 None 반환
+    query = request.GET.get('query', '') # Key가 없으면 None 반환
+    post_list = []
+
     if query:
         #text = f'{query} 검색할꺼야.'
         url = 'https://search.naver.com/search.naver'
@@ -76,7 +78,6 @@ def naver_blog_search(request):
 
         tag_list = soup.select('.sh_blog_title')
 
-        post_list = []
         for tag in tag_list:
             post_title = tag['title']
             post_url = tag['href']
@@ -85,26 +86,26 @@ def naver_blog_search(request):
                 'url': post_url,
             })
 
-        # blog/templates/blog/naver_blog_search.html
-        return render(request, 'blog/naver_blog_search.html', {
-            'query': query,
-            'post_list': post_list,
-        })
-    else:
-        text = '검색어를 지정해 주세요.'
+    # blog/templates/blog/naver_blog_search.html
+    return render(request, 'blog/naver_blog_search.html', {
+        'query': query,
+        'post_list': post_list,
+    })
+#    else:
+#        text = '검색어를 지정해 주세요.'
 
-    return HttpResponse(text)
+#    return HttpResponse(text)
 
 
 def 사원증_이미지_응답(request):
-    # ttf_path = 'C:/Windows/Fonts/malgun.ttf' # 윈도우, 맥:
+    ttf_path = 'C:/Windows/Fonts/malgun.ttf' # 윈도우, 맥:
     # ttf_path = '/Library/Fonts/AppleGothic.ttf'
 
     # FIXME: 각 운영체제에 맞게 경로를 설정해주세요.
     # 파일을 복사한 후에, 경로 확인 후에 적용해주세요.
-    ttf_path = 'assets/fonts/arial.ttf'
+    #ttf_path = 'assets/fonts/arial.ttf'
 
-    text = request.GET.get('name', '익명')
+    text = request.GET.get('name', '김진우')
     # text = '이진석 (사번: 201900001)'
 
     image_url = 'http://www.flowermeaning.com/flower-pics/Calla-Lily-Meaning.jpg'
