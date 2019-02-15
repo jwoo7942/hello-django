@@ -103,7 +103,7 @@ def 사원증_이미지_응답(request):
 
     # FIXME: 각 운영체제에 맞게 경로를 설정해주세요.
     # 파일을 복사한 후에, 경로 확인 후에 적용해주세요.
-    ttf_path = 'assets/fonts/arial.ttf'
+    ttf_path = 'assets/fonts/AppleGothic.ttf'
 
     text = request.GET.get('name', '김진우')
     # text = '이진석 (사번: 201900001)'
