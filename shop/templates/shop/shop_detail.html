@@ -1,46 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>세부내역</title>
-</head>
-<body>
+{% extends "shop/layout.html" %}
 
-<h1>{{ shop }}</h1>
+{% block content %}
+    <div class="container">
+        <div class="col-sm-12">
+            <h1>{{ shop }}</h1>
 
-<div class="container">
-        <div class="card-group">
-            {% for item in item_list %}
-                <div class="col-sm-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            {% if item.name %}
-                                <p class="card-text">
-                                    {{ item.name }}
-                                </p>
-                            {% endif %}
-                            {% if item.desc %}
-                                <p class="card-text">
-                                    {{ item.desc }}
-                                </p>
-                            {% endif %}
-                            <p class="card-text">
-                                <small class="text-muted">
-                                    {{ item.created_at }}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+            {{ shop.desc }} |
+            {{ shop.address }}
+
+            {% if shop.photo %}
+                <img src="{{ shop.photo.url }}" />
+            {% endif %}
+
+            <hr/>
+            <a href="/shop/" class="btn btn-primary">목록으로</a>
         </div>
     </div>
 
-
-<br><br>
-<a href="/shop/">목록으로</a>
-
-</body>
-</html>
-
-
+{% endblock %}
